@@ -6,7 +6,7 @@ import { VitePWA } from 'vite-plugin-pwa';
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, '.', '');
   return {
-    base: './',
+    base: './',   // ensures assets load correctly
     build: {
       outDir: 'dist',
       assetsDir: 'assets',
@@ -22,7 +22,7 @@ export default defineConfig(({ mode }) => {
         manifest: {
           name: 'Hujra Manager',
           short_name: 'Hujra',
-          start_url: './',      // important for shortcuts
+          start_url: '.',        // crucial for shortcuts
           display: 'standalone',
           background_color: '#ffffff',
           theme_color: '#1976d2',

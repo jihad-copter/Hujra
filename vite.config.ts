@@ -6,13 +6,12 @@ export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, '.', '')
 
   return {
-    // ✅ بۆ root GitHub Pages
-    base: './',  
+    base: './',  // ✅ relative paths for root GitHub Pages
 
     plugins: [react()],
 
     build: {
-      outDir: 'dist',    // build output
+      outDir: 'dist',
       assetsDir: 'assets',
     },
 

@@ -1,18 +1,29 @@
 <!DOCTYPE html>
 <html lang="ku" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="apple-mobile-web-app-title" content="حوجرە">
-    <link rel="apple-touch-icon" href="https://img.icons8.com/color/192/mosque.png">
-    <link rel="manifest" href="manifest.json">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+
     <title>Hujra Manager - بەڕێوەبەری حوجرە</title>
-    
+
+    <!-- PWA -->
+    <meta name="theme-color" content="#064e3b" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="حوجرە" />
+
+    <!-- Icons -->
+    <link rel="icon" href="/favicon.png" />
+    <link rel="apple-touch-icon" href="/favicon.png" />
+    <link rel="manifest" href="/manifest.json" />
+
+    <!-- Fonts & Tailwind -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100;400;700&display=swap" rel="stylesheet">
-    
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="/index.css" />
+
     <style>
         body {
             font-family: 'Vazirmatn', sans-serif;
@@ -20,10 +31,12 @@
             margin: 0;
             padding: 0;
         }
+
         .kurdish-pattern {
             background-color: #064e3b;
             background-image: url("https://www.transparenttextures.com/patterns/islamic-art.png");
         }
+
         #loading-state {
             position: fixed;
             inset: 0;
@@ -36,7 +49,8 @@
             transition: opacity 0.5s ease-out;
         }
     </style>
-    
+
+    <!-- Import Maps -->
     <script type="importmap">
     {
       "imports": {
@@ -50,15 +64,19 @@
       }
     }
     </script>
-<link rel="stylesheet" href="/index.css">
 </head>
+
 <body>
+    <!-- Loading -->
     <div id="loading-state">
-        <img src="https://img.icons8.com/color/96/mosque.png" class="w-16 h-16 mb-4 animate-bounce" alt="Loading">
+        <img src="/favicon.png" class="w-16 h-16 mb-4 animate-bounce" alt="Loading">
         <p class="font-bold text-emerald-900">بەرنامەکە ئامادە دەکرێت...</p>
     </div>
+
+    <!-- React Root -->
     <div id="root"></div>
-    <script type="module" src="index.tsx"></script>
-<script type="module" src="/index.tsx"></script>
+
+    <!-- App Entry -->
+    <script type="module" src="/index.tsx"></script>
 </body>
 </html>

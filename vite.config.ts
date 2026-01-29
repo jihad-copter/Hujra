@@ -6,13 +6,13 @@ export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, '.', '')
 
   return {
-    // ✅ پێویستە repository name ـت بێت
-    base: '/Hujra/',
+    // ✅ بۆ root GitHub Pages
+    base: './',  
 
     plugins: [react()],
 
     build: {
-      outDir: 'dist',
+      outDir: 'dist',    // build output
       assetsDir: 'assets',
     },
 

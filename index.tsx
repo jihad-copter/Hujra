@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { createRoot } from 'react-dom/client';
 import App from './App.tsx';
@@ -13,8 +12,7 @@ if (container) {
       <App />
     </React.StrictMode>
   );
-  
-  // لادانی شاشەی بارکردن دوای ئەوەی ڕیاکت دەست بەکار بوو
+
   if (loadingOverlay) {
     setTimeout(() => {
       loadingOverlay.style.opacity = '0';

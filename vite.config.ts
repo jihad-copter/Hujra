@@ -6,7 +6,8 @@ export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, '.', '')
 
   return {
-    base: '/',   // ✅ گرنگترین شت
+    // GitHub Pages base (repository name)
+    base: '/Hujra/',  
 
     plugins: [react()],
 

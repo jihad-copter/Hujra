@@ -6,7 +6,7 @@ export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, '.', '')
 
   return {
-    // GitHub Pages base (repository name)
+    // 🔹 بۆ GitHub Pages (repository name)
     base: '/Hujra/',  
 
     plugins: [react()],

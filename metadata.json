@@ -1,0 +1,7 @@
+{
+  "name": "Hujra Manager (بەڕێوەبەری حوجرە)",
+  "description": "A comprehensive system for managing religious students (Faqes) in mosque schools, tracking their personal, educational, financial, and health status.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}

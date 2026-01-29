@@ -1,9 +1,11 @@
 
-const CACHE_NAME = 'hujra-manager-v3';
+const CACHE_NAME = 'hujra-manager-v5';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
   './index.tsx',
+  './manifest.json',
+  './types.ts',
   'https://cdn.tailwindcss.com',
   'https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100;400;700&display=swap',
   'https://img.icons8.com/color/48/mosque.png',
@@ -12,39 +14,36 @@ const ASSETS_TO_CACHE = [
   'https://www.transparenttextures.com/patterns/islamic-art.png'
 ];
 
-// کاتی دامەزراندن
 self.addEventListener('install', (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
-      return cache.addAll(ASSETS_TO_CACHE);
+      return Promise.allSettled(
+        ASSETS_TO_CACHE.map(url => cache.add(url))
+      );
     })
   );
   self.skipWaiting();
 });
 
-// سڕینەوەی کاشە کۆنەکان
 self.addEventListener('activate', (event) => {
   event.waitUntil(
-    caches.keys().then((cacheNames) => {
+    caches.keys().then((keys) => {
       return Promise.all(
-        cacheNames.map((cacheName) => {
-          if (cacheName !== CACHE_NAME) {
-            return caches.delete(cacheName);
-          }
-        })
+        keys.filter(key => key !== CACHE_NAME).map(key => caches.delete(key))
       );
     })
   );
   self.clients.claim();
 });
 
-// ستراتیژی Network First بەڵام کاشکردنی هەموو داواکارییەکان (تەنانەت React لە esm.sh)
 self.addEventListener('fetch', (event) => {
   if (event.request.method !== 'GET') return;
 
   event.respondWith(
     caches.match(event.request).then((cachedResponse) => {
-      const fetchPromise = fetch(event.request).then((networkResponse) => {
+      if (cachedResponse) return cachedResponse;
+
+      return fetch(event.request).then((networkResponse) => {
         if (networkResponse && networkResponse.status === 200) {
           const responseToCache = networkResponse.clone();
           caches.open(CACHE_NAME).then((cache) => {
@@ -53,11 +52,11 @@ self.addEventListener('fetch', (event) => {
         }
         return networkResponse;
       }).catch(() => {
-        // ئەگەر ئینتەرنێت نەبوو، لاپەڕەی کاشکراو یان index.html بدەرەوە
-        return cachedResponse || caches.match('./index.html');
+        // ئەگەر ئۆفلاین بوو و فایلەکە نەبوو، لاپەڕەی سەرەکی نیشان بدە
+        if (event.request.mode === 'navigate') {
+          return caches.match('./index.html');
+        }
       });
-
-      return cachedResponse || fetchPromise;
     })
   );
 });

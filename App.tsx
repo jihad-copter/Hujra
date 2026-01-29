@@ -1,12 +1,12 @@
 
 import React from 'react';
-import { ViewState, Student, TeacherVisit, StudyLog, FinancialLog, BookProgress } from './types';
-import Layout from './components/Layout';
-import StudentForm from './components/StudentForm';
-import VisitForm from './components/VisitForm';
-import Reports from './components/Reports';
-import { analyzeStudentProgress } from './services/geminiService';
-import { db } from './services/db';
+import { ViewState, Student, TeacherVisit, StudyLog, FinancialLog, BookProgress } from './types.ts';
+import Layout from './components/Layout.tsx';
+import StudentForm from './components/StudentForm.tsx';
+import VisitForm from './components/VisitForm.tsx';
+import Reports from './components/Reports.tsx';
+import { analyzeStudentProgress } from './services/geminiService.ts';
+import { db } from './services/db.ts';
 import { 
   Book, Phone, MapPin, Search, PlusCircle, BrainCircuit, Users, History, 
   ArrowLeft, GraduationCap, BarChart3, User, BookOpen, Trash2, AlertTriangle, 
